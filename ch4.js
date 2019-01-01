@@ -34,3 +34,13 @@ const reverseArrayInPlace = arr => {
     arr.splice(i, 1);
   }
 }
+
+//exercise 3
+const arrayToList = (arr, result = {}) => {
+  result.value = arr[0];
+  if(arr.length === 1) {
+    return result;
+  }
+  result.rest = arrayToList(arr.slice(1));
+  return result;
+}
