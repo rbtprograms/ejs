@@ -38,9 +38,22 @@ const reverseArrayInPlace = arr => {
 //exercise 3
 const arrayToList = (arr, result = {}) => {
   result.value = arr[0];
+  if(!result.rest) {
+    result.rest = null
+  }
   if(arr.length === 1) {
     return result;
   }
   result.rest = arrayToList(arr.slice(1));
+  return result;
+}
+
+const listToArray = (list, result = []) => {
+  console.log(list)
+  if(list.rest === null) {
+    return result.push(list.value)
+  }
+  result.push(list.value)
+  listToArray(list.rest, result);
   return result;
 }
