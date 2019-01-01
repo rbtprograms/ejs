@@ -49,11 +49,22 @@ const arrayToList = (arr, result = {}) => {
 }
 
 const listToArray = (list, result = []) => {
-  console.log(list)
   if(list.rest === null) {
     return result.push(list.value)
   }
   result.push(list.value)
   listToArray(list.rest, result);
   return result;
+}
+
+const prepend = (el, list) => {
+  return { value: el, rest: list }
+}
+
+const nth = (list, index, position = 0) => {
+  if(position === index) {
+    return list.value;
+  }
+  position++;
+  return nth(list.rest, index, position)
 }
