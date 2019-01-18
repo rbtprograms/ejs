@@ -68,3 +68,21 @@ const nth = (list, index, position = 0) => {
   position++;
   return nth(list.rest, index, position)
 }
+
+const deepEqual = (a, b) => {
+  if(a === b) return true;
+  if(!a || typeof a !== 'object' || !b || typeof b !== object) return false;
+  let keysA = a.keys(), keysB = b.keys();
+  if(keysA.length !== keysB.length) return false;
+  for(let i in keysA) {
+    if(typeof keysA[i] === 'object') {
+      deepEqual(keysA[i], keysB[i]);
+    }
+    else {
+      if(keysA[i] !== keysB[i]) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
