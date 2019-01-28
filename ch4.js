@@ -69,16 +69,20 @@ const nth = (list, index, position = 0) => {
   return nth(list.rest, index, position)
 }
 
-//exercise 4
-const deepEqual = (obj1, obj2) => {
-  if(Object.keys(obj1) !== Object.keys(obj2)) {
-    return false
-  }
-  let values1 = Object.values(obj1), values2 = Object.values(obj2);
-  for(let i in values1) {
-    if(typeof values1[i] === Object) {
-      
+const deepEqual = (a, b) => {
+  if(a === b) return true;
+  if(!a || typeof a !== 'object' || !b || typeof b !== object) return false;
+  let keysA = a.keys(), keysB = b.keys();
+  if(keysA.length !== keysB.length) return false;
+  for(let i in keysA) {
+    if(typeof keysA[i] === 'object') {
+      deepEqual(keysA[i], keysB[i]);
+    }
+    else {
+      if(keysA[i] !== keysB[i]) {
+        return false;
+      }
     }
   }
-  return false;
+  return true;
 }
