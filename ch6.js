@@ -1,6 +1,6 @@
 //objects
 //Vector
-class Vec{
+class Vec {
     constructor(x, y) {
         this.x = x;
         this.y = y;
@@ -43,5 +43,28 @@ class Group {
             group.add(item);
         }
         return group;
+    }
+
+    [Symbol.iterator]() {
+        return new GroupIterator(this.iter);
+    }
+}
+
+//iterable group
+class GroupIterator {
+    constructor(group) {
+        this.group = group;
+        this.index = 0;
+    }
+
+    next() {
+        if(this.group.length === this.index) {
+            return { done: true };
+        }
+        
+        let value = this.group[this.index];
+        this.index++;
+
+        return { value, done: false };
     }
 }
