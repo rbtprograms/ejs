@@ -9,6 +9,7 @@ function primitiveMultiply(a, b) {
   }
 }
 
+//I swear i do stuff guthub pls
 function reliableMultiply(a, b) {
   try {
     return primitiveMultiply(a, b);
