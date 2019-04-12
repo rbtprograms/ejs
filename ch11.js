@@ -2,6 +2,7 @@ async function locateScalpel(nest) {
   // Your code here.
 }
 
+//remaking promise all
 function Promise_all(promises) {
   return new Promise((resolve, reject) => {
     let result = Array.from(promises.length);
