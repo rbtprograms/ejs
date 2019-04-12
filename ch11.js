@@ -3,20 +3,18 @@ async function locateScalpel(nest) {
 }
 
 function Promise_all(promises) {
-  let result = Array.from(promises.length);
-  let counter = promises.length;
-  //if (counter === 0) return result;
   return new Promise((resolve, reject) => {
+    let result = Array.from(promises.length);
+    let counter = promises.length;
     for(let i in promises) {
         promises[i]
           .then(val => {
             result[i] = val;
             counter--;
-            resolve(val);
+            if (counter === 0) resolve(result);
           })
-          .catch(err => {
-            reject(err)
-          });
+          .catch(reject)
       }
+      if (promises.length === 0) resolve(result);
     });
 }
